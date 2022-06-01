@@ -1,7 +1,8 @@
-const multer = require("multer");
-const path = require("path");
+const multer = require('multer');
+const path = require('path');
+const { SIZE } = require('../helpers/constants');
 
-const tmpDir = path.join(__dirname, "../", "tmp");
+const tmpDir = path.join(__dirname, '../', 'tmp');
 
 const multerConfig = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -15,13 +16,13 @@ const multerConfig = multer.diskStorage({
 const upload = multer({
   storage: multerConfig,
   limits: {
-    fileSize: 1048576,
+    fileSize: SIZE.ONEMB,
   },
   fileFilter: (req, file, cb) => {
-    if (file.mimetype.includes("image")) {
+    if (file.mimetype.includes('image')) {
       return cb(null, true);
     } else {
-      cb(new Error("Only images are allowed"));
+      cb(new Error('Only images are allowed'));
     }
   },
 });

@@ -1,24 +1,22 @@
-const express = require("express");
-const { signup, login, logout } = require("../../controllers/auth");
-const { authToken, validation, tryCatchWrapper } = require("../../middlewares");
+const router = require('express').Router();
+const { register, login, logout } = require('../../controllers/auth');
+const { authToken, validation, tryCatchWrapper } = require('../../middlewares');
 const {
-  signupUserJoiSchema,
+  registerUserJoiSchema,
   loginUserJoiSchema,
-} = require("../../models/user");
-
-const router = express.Router();
+} = require('../../services/joiSchemas');
 
 router
   .post(
-    "/signup",
-    validation("body", signupUserJoiSchema),
-    tryCatchWrapper(signup)
+    '/register',
+    validation('body', registerUserJoiSchema),
+    tryCatchWrapper(register),
   )
   .post(
-    "/login",
-    validation("body", loginUserJoiSchema),
-    tryCatchWrapper(login)
+    '/login',
+    validation('body', loginUserJoiSchema),
+    tryCatchWrapper(login),
   )
-  .get("/logout", authToken, tryCatchWrapper(logout));
+  .get('/logout', authToken, tryCatchWrapper(logout));
 
 module.exports = router;

@@ -1,69 +1,60 @@
-const express = require("express");
+const router = require('express').Router();
 const {
   getContacts,
-  getContactById,
-  addContact,
+  createContact,
   updateContact,
   deleteContact,
   updateContactFavorite,
-  updateContactAvatar,
-} = require("../../controllers/contacts");
+  deleteContactAvatar,
+} = require('../../controllers/contacts');
 const {
   authToken,
   validation,
   tryCatchWrapper,
   upload,
-} = require("../../middlewares");
+} = require('../../middlewares');
 const {
   createContactJoiSchema,
   updateContactJoiSchema,
   favoriteContactJoiSchema,
-  contactJoiId,
-} = require("../../models/contact");
-
-const router = express.Router();
+  idContactJoiSchema,
+} = require('../../services/joiSchemas');
 
 router
-  .get("/", authToken, tryCatchWrapper(getContacts))
+  .get('/', authToken, tryCatchWrapper(getContacts))
   .post(
-    "/",
-    [authToken, validation("body", createContactJoiSchema)],
-    tryCatchWrapper(addContact)
-  );
-
-router
-  .get(
-    "/:contactId",
-    [authToken, validation("params", contactJoiId)],
-    tryCatchWrapper(getContactById)
+    '/',
+    [authToken, validation('body', createContactJoiSchema)],
+    tryCatchWrapper(createContact),
   )
   .put(
-    "/:contactId",
+    '/:contactId',
     [
       authToken,
-      validation("params", contactJoiId),
-      validation("body", updateContactJoiSchema),
+      validation('params', idContactJoiSchema),
+      upload.single('avatar'),
+      validation('body', updateContactJoiSchema),
     ],
-    tryCatchWrapper(updateContact)
+    tryCatchWrapper(updateContact),
   )
   .delete(
-    "/:contactId",
-    [authToken, validation("params", contactJoiId)],
-    tryCatchWrapper(deleteContact)
+    '/:contactId',
+    [authToken, validation('params', idContactJoiSchema)],
+    tryCatchWrapper(deleteContact),
   )
   .patch(
-    "/:contactId/favorite",
+    '/:contactId/favorite',
     [
       authToken,
-      validation("params", contactJoiId),
-      validation("body", favoriteContactJoiSchema),
+      validation('params', idContactJoiSchema),
+      validation('body', favoriteContactJoiSchema),
     ],
-    tryCatchWrapper(updateContactFavorite)
+    tryCatchWrapper(updateContactFavorite),
   )
-  .patch(
-    "/:contactId/avatars",
-    [authToken, upload.single("avatar")],
-    tryCatchWrapper(updateContactAvatar)
+  .delete(
+    '/:contactId/avatars',
+    authToken,
+    tryCatchWrapper(deleteContactAvatar),
   );
 
 module.exports = router;

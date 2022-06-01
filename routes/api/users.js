@@ -1,32 +1,28 @@
-const express = require("express");
+const router = require('express').Router();
 const {
   current,
-  updateAvatar,
-  verifyEmail,
-  reverifyEmail,
-} = require("../../controllers/users");
+  updateUser,
+  deleteAvatar,
+} = require('../../controllers/users');
 const {
   authToken,
   validation,
   tryCatchWrapper,
   upload,
-} = require("../../middlewares");
-const { reverifyUserJoiSchema } = require("../../models/user");
-
-const router = express.Router();
+} = require('../../middlewares');
+const { updateUserJoiSchema } = require('../../services/joiSchemas');
 
 router
-  .get("/current", authToken, tryCatchWrapper(current))
-  .patch(
-    "/avatars",
-    [authToken, upload.single("avatar")],
-    tryCatchWrapper(updateAvatar)
+  .get('/current', authToken, tryCatchWrapper(current))
+  .put(
+    '/',
+    [
+      authToken,
+      upload.single('avatar'),
+      validation('body', updateUserJoiSchema),
+    ],
+    tryCatchWrapper(updateUser),
   )
-  .post(
-    "/verify",
-    validation("body", reverifyUserJoiSchema),
-    tryCatchWrapper(reverifyEmail)
-  )
-  .get("/verify/:verificationToken", tryCatchWrapper(verifyEmail));
+  .delete('/avatars', authToken, tryCatchWrapper(deleteAvatar));
 
 module.exports = router;
