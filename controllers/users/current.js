@@ -13,7 +13,7 @@ const current = async (req, res) => {
         avatarUrl: user.avatarUrl,
       },
       token: user.token,
-      message: `Current user ${MESSAGE.LOADED_SUCCESSFUL}`,
+      message: `User ${MESSAGE.LOADED_SUCCESSFUL}`,
     },
   });
 };

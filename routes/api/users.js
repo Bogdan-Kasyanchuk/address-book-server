@@ -10,7 +10,7 @@ const {
   tryCatchWrapper,
   upload,
 } = require('../../middlewares');
-const { updateUserJoiSchema } = require('../../services/joiSchemas');
+const { updateUserJoiSchema } = require('../../services/joiSchemasService');
 
 router
   .get('/current', authToken, tryCatchWrapper(current))

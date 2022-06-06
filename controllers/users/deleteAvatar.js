@@ -1,5 +1,5 @@
 const { User } = require('../../models');
-const { createAvatar } = require('../../services/avatars');
+const { createAvatar } = require('../../services/avatarService');
 const { STATUS, HTTP_CODE, MESSAGE } = require('../../helpers/constants');
 
 const deleteAvatar = async (req, res) => {

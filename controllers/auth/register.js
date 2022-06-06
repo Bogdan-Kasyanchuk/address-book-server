@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const { User } = require('../../models');
-const { createAvatar } = require('../../services/avatars');
+const { createAvatar } = require('../../services/avatarService');
 const tokenService = require('../../services/tokenService');
 const { STATUS, HTTP_CODE, MESSAGE } = require('../../helpers/constants');
 

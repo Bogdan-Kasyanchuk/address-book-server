@@ -1,5 +1,5 @@
 const { Contact } = require('../../models');
-const { createAvatar } = require('../../services/avatars');
+const { createAvatar } = require('../../services/avatarService');
 const { STATUS, HTTP_CODE, MESSAGE } = require('../../helpers/constants');
 
 const deleteContactAvatar = async (req, res) => {
@@ -16,14 +16,17 @@ const deleteContactAvatar = async (req, res) => {
     return res.json({
       status: STATUS.SUCCESS,
       code: HTTP_CODE.OK,
-      payload: { contact, message: `Contact ${MESSAGE.DELETED_SUCCESSFUL}` },
+      payload: {
+        contact,
+        message: `Contact avatar ${MESSAGE.DELETED_SUCCESSFUL}`,
+      },
     });
   } else {
     return res.status(HTTP_CODE.NOT_FOUND).json({
       status: STATUS.ERROR,
       code: HTTP_CODE.NOT_FOUND,
       payload: {
-        message: `Contact avatar ${MESSAGE.NOT_FOUND}`,
+        message: `Contact ${MESSAGE.NOT_FOUND}`,
       },
     });
   }

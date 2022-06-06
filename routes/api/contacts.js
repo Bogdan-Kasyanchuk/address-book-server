@@ -18,7 +18,7 @@ const {
   updateContactJoiSchema,
   favoriteContactJoiSchema,
   idContactJoiSchema,
-} = require('../../services/joiSchemas');
+} = require('../../services/joiSchemasService');
 
 router
   .get('/', authToken, tryCatchWrapper(getContacts))

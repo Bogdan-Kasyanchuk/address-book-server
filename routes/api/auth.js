@@ -4,7 +4,7 @@ const { authToken, validation, tryCatchWrapper } = require('../../middlewares');
 const {
   registerUserJoiSchema,
   loginUserJoiSchema,
-} = require('../../services/joiSchemas');
+} = require('../../services/joiSchemasService');
 
 router
   .post(

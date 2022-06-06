@@ -1,6 +1,6 @@
 const { unlink } = require('fs/promises');
 const { User } = require('../../models');
-const { updateAvatar } = require('../../services/avatars');
+const { updateAvatar } = require('../../services/avatarService');
 const { STATUS, HTTP_CODE, MESSAGE } = require('../../helpers/constants');
 
 const updateUser = async (req, res, next) => {
