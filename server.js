@@ -1,5 +1,5 @@
 const app = require('./app');
-const db = require('./config/db');
+const db = require('./bin/db');
 
 const { PORT } = process.env;
 
