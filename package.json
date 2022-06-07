@@ -9,6 +9,8 @@
     "lint:fix": "eslint --fix **/*.js"
   },
   "dependencies": {
+    "@dicebear/avatars": "^4.10.2",
+    "@dicebear/avatars-initials-sprites": "^4.10.2",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.30.0",
     "cors": "2.8.5",
@@ -30,5 +32,8 @@
     "eslint-config-standard": "16.0.3",
     "morgan": "1.10.0",
     "nodemon": "2.0.15"
+  },
+  "engines": {
+    "node": "16.14.0"
   }
 }

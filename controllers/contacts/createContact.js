@@ -4,6 +4,7 @@ const { STATUS, HTTP_CODE, MESSAGE } = require('../../helpers/constants');
 
 const createContact = async (req, res) => {
   const avatarUrl = createAvatar(req.body.email);
+
   const contact = await Contact.create({
     ...req.body,
     avatarUrl,
