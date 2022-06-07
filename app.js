@@ -1,5 +1,5 @@
 const express = require('express');
-const logger = require('morgan');
+// const logger = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 require('dotenv').config();
@@ -15,12 +15,12 @@ const {
 
 const app = express();
 
-const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
+// const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(limiter(LIMIT.LIMITER_WINDOWMS, LIMIT.LIMITER_MAX));
 app.use(helmet());
-app.use(logger(formatsLogger));
+// app.use(logger(formatsLogger));
 app.use(express.json({ limit: SIZE.HALFMB }));
 
 app.use('/api/auth', authRouter);
