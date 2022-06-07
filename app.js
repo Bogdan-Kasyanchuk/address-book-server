@@ -17,10 +17,10 @@ const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
-app.use(logger(formatsLogger));
 app.use(cors({ origin: true, credentials: true }));
 app.use(limiter(LIMIT.LIMITER_WINDOWMS, LIMIT.LIMITER_MAX));
 app.use(helmet());
+app.use(logger(formatsLogger));
 app.use(express.json({ limit: SIZE.HALFMB }));
 
 app.use('/api/auth', authRouter);
