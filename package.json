@@ -24,13 +24,13 @@
     "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.10",
+    "morgan": "1.10.0",
     "multer": "^1.4.4"
   },
   "devDependencies": {
     "eslint": "7.19.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "16.0.3",
-    "morgan": "1.10.0",
     "nodemon": "2.0.15"
   },
   "engines": {
