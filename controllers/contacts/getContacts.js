@@ -3,7 +3,7 @@ const { STATUS, HTTP_CODE, MESSAGE } = require('../../helpers/constants');
 
 const getContacts = async (req, res) => {
   const { _id } = req.user;
-  const { page = 1, limit = 20, favorite } = req.query;
+  const { page = 1, limit = 100, favorite } = req.query;
   const skip = (page - 1) * limit;
   const numberLimit = Number(limit);
   let findParam = null;

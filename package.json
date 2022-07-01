@@ -9,8 +9,6 @@
     "lint:fix": "eslint --fix **/*.js"
   },
   "dependencies": {
-    "@dicebear/avatars": "^4.10.2",
-    "@dicebear/avatars-initials-sprites": "^4.10.2",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.30.0",
     "cors": "2.8.5",
