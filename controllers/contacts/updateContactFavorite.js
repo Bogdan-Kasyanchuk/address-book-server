@@ -15,7 +15,10 @@ const updateContactFavorite = async (req, res) => {
     return res.json({
       status: STATUS.SUCCESS,
       code: HTTP_CODE.OK,
-      payload: { contact, message: `Contact ${MESSAGE.UPDATED_SUCCESSFUL}` },
+      payload: {
+        contact,
+        message: `Contact favorite ${MESSAGE.UPDATED_SUCCESSFUL}`,
+      },
     });
   } else {
     return res.status(HTTP_CODE.NOT_FOUND).json({
