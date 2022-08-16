@@ -3,7 +3,7 @@ const { STATUS, HTTP_CODE, MESSAGE } = require('../../helpers/constants');
 
 const getContacts = async (req, res) => {
   const { _id } = req.user;
-  const { page = 1, limit = 100, favorite } = req.query;
+  const { page = 1, limit = 200, favorite } = req.query;
   const skip = (page - 1) * limit;
   const numberLimit = Number(limit);
   let findParam = null;
@@ -21,9 +21,7 @@ const getContacts = async (req, res) => {
     },
   ).populate('owner', '_id name email');
   const shownDocuments = contacts.length;
-  const totalDocuments = await Contact.countDocuments({
-    owner: _id,
-  });
+  const totalDocuments = await Contact.countDocuments(findParam);
   return res.json({
     status: STATUS.SUCCESS,
     code: HTTP_CODE.OK,
